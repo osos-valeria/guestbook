@@ -23,14 +23,11 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
+     * The attributes that should be visible in arrays.
      *
-     * @var array<int, string>
+     * @var array
      */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    protected $visible = ['name'];
 
     /**
      * Get the attributes that should be cast.
