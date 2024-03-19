@@ -13,6 +13,23 @@ class Review extends Model
     use HasFactory;
 
     /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = false;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'user_id',
+        'message',
+    ];
+
+    /**
      * The accessors to append to the model's array form.
      *
      * @var array
@@ -25,7 +42,6 @@ class Review extends Model
      * @var array<int, string>
      */
     protected $hidden = [
-        'id',
         'user_id',
         'user',
     ];
@@ -50,7 +66,7 @@ class Review extends Model
     protected function userName(): Attribute
     {
         return new Attribute(
-            get: fn () => $this->user->name,
+            get: fn() => $this->user->name,
         );
     }
 }
