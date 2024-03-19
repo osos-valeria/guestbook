@@ -12,3 +12,14 @@ The app is available at: http://localhost:80/ (If port was not changed).
 You can use the [postman collection](Guestbook.postman_collection.json) to check endpoints.
 
 Use Bearer token for authorization (it can be obtained during registration or login).
+
+-----
+
+During the launch of the project, there may be problems with accessing files from the container.
+To solve this problem, the following commands can help (should be executed from the root folder of the project):
+
+```
+sudo chown -R $USER:$USER .
+chmod -R gu+w storage
+chmod -R guo+w storage
+```
