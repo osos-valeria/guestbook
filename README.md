@@ -10,3 +10,5 @@ The app is available at: http://localhost:80/ (If port was not changed).
 -----
 
 You can use the [postman collection](Guestbook.postman_collection.json) to check endpoints.
+
+Use Bearer token for authorization (it can be obtained during registration or login).
