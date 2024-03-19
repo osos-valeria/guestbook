@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\AddReviewAnswer;
 use App\Models\Answer;
+use App\Models\Review;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -17,12 +19,16 @@ class AnswerController extends Controller
             'review_id' => ['required'],
         ]);
 
+        $reviewId = $request->review_id;
+
         try {
             Answer::create([
                 'user_id' => $request->user()->id,
                 'message' => $request->message,
-                'review_id' => $request->review_id,
+                'review_id' => $reviewId,
             ]);
+
+            AddReviewAnswer::dispatch(Review::where('id', $reviewId)->first());
         } catch (Exception $e) {
             return response()->json(
                 ['message' => $e->getMessage()],

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\AddReview;
 use App\Models\Review;
 use Exception;
 use Illuminate\Http\JsonResponse;
@@ -38,6 +39,8 @@ class ReviewController extends Controller
                 'user_id' => $request->user()->id,
                 'message' => $request->message,
             ]);
+
+            AddReview::dispatch();
         } catch (Exception $e) {
             return response()->json(
                 ['message' => $e->getMessage()],
